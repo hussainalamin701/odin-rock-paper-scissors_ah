@@ -99,3 +99,9 @@ button{
   cursor:pointer;
   text-align: center;
 }
+
+#player-icon{
+    font-size: 180px;
+    text-align: center;
+    align-items: center;
+}
