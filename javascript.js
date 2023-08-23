@@ -15,6 +15,8 @@ const computer_choice = document.getElementById("computer-choice");
 
 const buttons = document.querySelectorAll(".btn");
 
+let winOrLose = '';
+
 let computerSelection = ['Rock','Paper','Scissor'];
 
 let temp_comp_choice = '';
@@ -47,11 +49,6 @@ function checkWinner(){
 }
 
 function compare(playerSelection, computerSelection){
-    if(playerSelection === computerSelection){
-        document.getElementById("win-lose-text").innerHTML = "Tie";
-        console.log("Tie");
-    }
-
     if(
         (playerSelection == "Rock" && computerSelection == "Scissor") ||
         (playerSelection == "Paper" && computerSelection == "Rock") ||
@@ -61,16 +58,13 @@ function compare(playerSelection, computerSelection){
         playerScoreVal++;
         
         playerScorePara.innerHTML = `Player Score : ${playerScoreVal}`;
+    }else if(playerSelection === computerSelection){
+        document.getElementById("win-lose-text").innerHTML = "Tie";
+        console.log("Tie");
     }
-
-    if(
-        (playerSelection == "Scissor" && computerSelection == "Rock") ||
-        (playerSelection == "Rock" && computerSelection == "Paper") ||
-        (playerSelection == "Paper" && computerSelection == "Scissor")
-        ){
+    else{
         document.getElementById("win-lose-text").innerHTML = "Computer Wins";
         computerScoreVal++;
-        
         computerScorePara.innerHTML = `Computer Score : ${computerScoreVal}`;
     }
 }
@@ -82,7 +76,7 @@ function buttonRock(){
     document.getElementById("player-choice").innerHTML = `Player Chose : ${temp_play_choice}`
 
     compare(temp_play_choice, abx);
-    checkWinner();
+
 }
 
 function buttonPaper(){
@@ -92,7 +86,6 @@ function buttonPaper(){
     document.getElementById("player-choice").innerHTML = `Player Chose : ${temp_play_choice}`
    
     compare(temp_play_choice, abx);
-    checkWinner();
 }
 
 function buttonScissor(){
@@ -103,8 +96,14 @@ function buttonScissor(){
     document.getElementById("player-choice").innerHTML = `Player Chose : ${temp_play_choice}`
 
     compare(temp_play_choice, abx);
-    checkWinner();
+}
 
+function updateText(){
+
+}
+
+function playRound(){
+    
 }
 
 rockBtn.addEventListener("click", buttonRock);
