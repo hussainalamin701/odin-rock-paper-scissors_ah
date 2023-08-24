@@ -54,13 +54,19 @@ function checkWinner(){
         playerScorePara.innerHTML = `Player Chose : ${player_choice}`;
         computerScorePara.innerHTML = `Computer Chose : ${computer_choice}`;
         document.getElementById("win-lose-text").innerHTML = 'Blank';
-
         alert("Player Wins");
+
     }else if(computerScoreVal === 5){
         playerScoreVal = 0;
         computerScoreVal = 0;
-        playerScorePara.innerHTML = "You Lost";
+        computerScorePara.innerHTML = "You Lost";
+        player_choice = '';
+        computer_choice = '';
+        playerScorePara.innerHTML = `Player Chose : ${player_choice}`;
+        computerScorePara.innerHTML = `Computer Chose : ${computer_choice}`;
+        document.getElementById("win-lose-text").innerHTML = 'Blank';
         alert("Computer Wins");
+        
     }
 }
 
@@ -70,68 +76,106 @@ function compare(playerSelection, computerSelection){
         (playerSelection == "Paper" && computerSelection == "Rock") ||
         (playerSelection == "Scissor" && computerSelection == "Paper")
         ){
+        updateText();
         winOrLose = 'Player Wins';
         document.getElementById("win-lose-text").innerHTML = winOrLose;
+        updateText();
+
         playerScoreVal++;
-        
         playerScorePara.innerHTML = `Player Score : ${playerScoreVal}`;
+
     }else if(playerSelection === computerSelection){
+        updateText();
         winOrLose = 'Tie';
         document.getElementById("win-lose-text").innerHTML = winOrLose;
+        updateText();
+
         console.log("Tie");
     }
     else{
+        updateText();
         winOrLose = 'Computer Wins';
         document.getElementById("win-lose-text").innerHTML = winOrLose;
+        updateText();
+
         computerScoreVal++;
         computerScorePara.innerHTML = `Computer Score : ${computerScoreVal}`;
     }
 }
 
 function buttonRock(){
+    updateText();
     let abx = computerPlay(temp_comp_choice);
     document.getElementById("computer-choice").innerHTML = `Computer Chose : ${abx}`;
     temp_play_choice = document.getElementById("Rock").id;
     document.getElementById("player-choice").innerHTML = `Player Chose : ${temp_play_choice}`
 
-    updateText();
+    updateIcons(temp_play_choice,abx);
     compare(temp_play_choice, abx);
     checkWinner();
+    updateText();
 }
 
 function buttonPaper(){
+    updateText();
     let abx = computerPlay(temp_comp_choice);
     document.getElementById("computer-choice").innerHTML = `Computer Chose : ${computerPlay(temp_comp_choice)}`;
     temp_play_choice = document.getElementById("Paper").id;
     document.getElementById("player-choice").innerHTML = `Player Chose : ${temp_play_choice}`
    
-    updateText();
+    updateIcons(temp_play_choice,abx);
     compare(temp_play_choice, abx);
     checkWinner();
-
+    updateText();
 }
 
 function buttonScissor(){
+    updateText();
     let abx = computerPlay(temp_comp_choice);
-    
     document.getElementById("computer-choice").innerHTML = `Computer Chose : ${abx}`;
     temp_play_choice = document.getElementById("Scissor").id;
     document.getElementById("player-choice").innerHTML = `Player Chose : ${temp_play_choice}`
 
-    updateText();
+    updateIcons(temp_play_choice,abx);
     compare(temp_play_choice, abx);
- 
     checkWinner();
+    updateText();
 }
 
 function updateText(){
     document.getElementById("win-lose-text").innerHTML = winOrLose;
 }
-//Main function to be used
-function playRound(){
-    
+
+function updateIcons(playerSelection, computerSelection){
+    switch(playerSelection){
+        case 'Rock':
+            player_icon.textContent = '✊';
+            break;
+        case 'Paper':
+            player_icon.textContent = '✋';
+            break;
+        case 'Scissor':
+            player_icon.textContent = '✌';
+            break;
+    }
+
+    switch(computerSelection){
+        case 'Rock':
+            computer_icon.textContent = '✊';
+            break;
+        case 'Paper':
+            computer_icon.textContent = '✋';
+            break;
+        case 'Scissor':
+            computer_icon.textContent = '✌';
+            break;
+    }
 }
 
 rockBtn.addEventListener("click", buttonRock);
 paperBtn.addEventListener("click", buttonPaper);
 scissorBtn.addEventListener("click", buttonScissor);
+
+// This project was not constructed and or developed in the most efficient way/manner
+// I am going to come back to this at a later date to refactor my javascript code possibly(1 week or 2 weeks)
+// Other than messsy and unkempt code the functionality of this website works perfectly 90% of the time  
