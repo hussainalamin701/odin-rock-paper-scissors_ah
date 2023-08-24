@@ -15,7 +15,7 @@ const computer_choice = document.getElementById("computer-choice");
 
 const buttons = document.querySelectorAll(".btn");
 
-let winOrLose = '';
+let winOrLose = 'Blank';
 
 let computerSelection = ['Rock','Paper','Scissor'];
 
@@ -25,6 +25,8 @@ let temp_play_choice = '';
 
 playerScorePara.innerHTML = `Player Score : ${playerScoreVal}`;
 computerScorePara.innerHTML = `Computer Score : ${computerScoreVal}`;
+
+document.getElementById("win-lose-text").innerHTML = winOrLose;
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -43,8 +45,22 @@ function computerPlay(computerChoice){
 }
 
 function checkWinner(){
-    if(playerScoreVal === 5 || computerScoreVal === 5){
-        console.log("Won Overall");
+    if(playerScoreVal === 5){
+        playerScoreVal = 0;
+        computerScoreVal = 0;
+        computerScorePara.innerHTML = "You Lost";
+        player_choice = '';
+        computer_choice = '';
+        playerScorePara.innerHTML = `Player Chose : ${player_choice}`;
+        computerScorePara.innerHTML = `Computer Chose : ${computer_choice}`;
+        document.getElementById("win-lose-text").innerHTML = 'Blank';
+
+        alert("Player Wins");
+    }else if(computerScoreVal === 5){
+        playerScoreVal = 0;
+        computerScoreVal = 0;
+        playerScorePara.innerHTML = "You Lost";
+        alert("Computer Wins");
     }
 }
 
@@ -54,16 +70,19 @@ function compare(playerSelection, computerSelection){
         (playerSelection == "Paper" && computerSelection == "Rock") ||
         (playerSelection == "Scissor" && computerSelection == "Paper")
         ){
-        document.getElementById("win-lose-text").innerHTML = "Player Wins";
+        winOrLose = 'Player Wins';
+        document.getElementById("win-lose-text").innerHTML = winOrLose;
         playerScoreVal++;
         
         playerScorePara.innerHTML = `Player Score : ${playerScoreVal}`;
     }else if(playerSelection === computerSelection){
-        document.getElementById("win-lose-text").innerHTML = "Tie";
+        winOrLose = 'Tie';
+        document.getElementById("win-lose-text").innerHTML = winOrLose;
         console.log("Tie");
     }
     else{
-        document.getElementById("win-lose-text").innerHTML = "Computer Wins";
+        winOrLose = 'Computer Wins';
+        document.getElementById("win-lose-text").innerHTML = winOrLose;
         computerScoreVal++;
         computerScorePara.innerHTML = `Computer Score : ${computerScoreVal}`;
     }
@@ -75,8 +94,9 @@ function buttonRock(){
     temp_play_choice = document.getElementById("Rock").id;
     document.getElementById("player-choice").innerHTML = `Player Chose : ${temp_play_choice}`
 
+    updateText();
     compare(temp_play_choice, abx);
-
+    checkWinner();
 }
 
 function buttonPaper(){
@@ -85,7 +105,10 @@ function buttonPaper(){
     temp_play_choice = document.getElementById("Paper").id;
     document.getElementById("player-choice").innerHTML = `Player Chose : ${temp_play_choice}`
    
+    updateText();
     compare(temp_play_choice, abx);
+    checkWinner();
+
 }
 
 function buttonScissor(){
@@ -95,13 +118,16 @@ function buttonScissor(){
     temp_play_choice = document.getElementById("Scissor").id;
     document.getElementById("player-choice").innerHTML = `Player Chose : ${temp_play_choice}`
 
+    updateText();
     compare(temp_play_choice, abx);
+ 
+    checkWinner();
 }
 
 function updateText(){
-
+    document.getElementById("win-lose-text").innerHTML = winOrLose;
 }
-
+//Main function to be used
 function playRound(){
     
 }
