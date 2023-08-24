@@ -49,7 +49,7 @@ function checkWinner(){
         playerScoreVal = 0;
         computerScoreVal = 0;
         computerScorePara.innerHTML = "You Lost";
-        player_choice = '';
+        player_choice = 'Blank';
         computer_choice = '';
         playerScorePara.innerHTML = `Player Chose : ${player_choice}`;
         computerScorePara.innerHTML = `Computer Chose : ${computer_choice}`;
@@ -59,8 +59,8 @@ function checkWinner(){
     }else if(computerScoreVal === 5){
         playerScoreVal = 0;
         computerScoreVal = 0;
-        computerScorePara.innerHTML = "You Lost";
-        player_choice = '';
+        playerScorePara.innerHTML = "You Lost";
+        player_choice = 'Blank';
         computer_choice = '';
         playerScorePara.innerHTML = `Player Chose : ${player_choice}`;
         computerScorePara.innerHTML = `Computer Chose : ${computer_choice}`;
@@ -175,7 +175,3 @@ function updateIcons(playerSelection, computerSelection){
 rockBtn.addEventListener("click", buttonRock);
 paperBtn.addEventListener("click", buttonPaper);
 scissorBtn.addEventListener("click", buttonScissor);
-
-// This project was not constructed and or developed in the most efficient way/manner
-// I am going to come back to this at a later date to refactor my javascript code possibly(1 week or 2 weeks)
-// Other than messsy and unkempt code the functionality of this website works perfectly 90% of the time  
