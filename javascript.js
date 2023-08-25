@@ -9,11 +9,12 @@ const rockBtn = document.getElementById("Rock");
 
 const player_icon = document.getElementById("player-icon");
 const player_choice = document.getElementById("player-choice");
+
 const computer_icon = document.getElementById("computer-icon");
 const computer_choice = document.getElementById("computer-choice");
 
 
-const buttons = document.querySelectorAll(".btn");
+const buttons = document.querySelectorAll(".");
 
 let winOrLose = 'Blank';
 
@@ -25,6 +26,9 @@ let temp_play_choice = '';
 
 playerScorePara.innerHTML = `Player Score : ${playerScoreVal}`;
 computerScorePara.innerHTML = `Computer Score : ${computerScoreVal}`;
+
+player_choice.textContent = `Player Chose : ${temp_play_choice}`;
+computer_choice.textContent = `Computer Chose : ${temp_comp_choice}`;
 
 document.getElementById("win-lose-text").innerHTML = winOrLose;
 
@@ -119,7 +123,7 @@ function buttonRock(){
 function buttonPaper(){
     updateText();
     let abx = computerPlay(temp_comp_choice);
-    document.getElementById("computer-choice").innerHTML = `Computer Chose : ${computerPlay(temp_comp_choice)}`;
+    document.getElementById("computer-choice").innerHTML = `Computer Chose : ${abx}`;
     temp_play_choice = document.getElementById("Paper").id;
     document.getElementById("player-choice").innerHTML = `Player Chose : ${temp_play_choice}`
    
